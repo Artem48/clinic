@@ -29,6 +29,7 @@
         <div class="doctor">
         </div>
         </table>
+        <a href="adding_record.php?id=<?=$doctor['id']?>">Добавить запись</a>
         <footer>
             <p><br>Copyright&copy; 2019</p>
         </footer>

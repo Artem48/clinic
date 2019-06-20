@@ -14,7 +14,7 @@
             articles_new($link,$_POST['title'],$_POST['date'], $_POST['content']);
             header("Location:index.php");
         }
-        include("../views/adding_article.php");
+        include("../views/adding_record.php");
     }
     else if($action=="edit") {
         if (!isset($_GET['id']))

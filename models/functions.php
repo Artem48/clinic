@@ -70,6 +70,24 @@ function clinics($link)
     }
     return $clinics;
 }
+function get_clients($link)
+{
+    $query = "SELECT * FROM clients ORDER BY id asc ";
+    $result = mysqli_query($link, $query);
+
+    if(!$result)
+        die(mysqli_error($link));
+
+    $n=mysqli_num_rows($result);
+    $clients=array();
+
+    for($i=0;$i<$n;$i++)
+    {
+        $row=mysqli_fetch_assoc($result);
+        $clients[]=$row;
+    }
+    return $clients;
+}
 function get_clinic($link, $id){
     $query = sprintf("SELECT * FROM clinic WHERE id=%d",(int)$id);
     $result = mysqli_query($link, $query);
@@ -148,5 +166,9 @@ function articles_intro($text, $len=500){
     $intro=mb_substr($text, 0, $len);
     if($text!=$intro) $intro=$intro."...";
     return $intro;
+}
+function adding_record($link, $client, $date, $time1, $time2){
+    include("views/doctors.php");include("views/doctors.php");include("views/doctors.php");
+
 }
 ?>

@@ -2,27 +2,32 @@
 <html>
 <head>
     <meta charset="utf8">
-    <title>Новости</title>
+    <title>Стоматологическая клиника</title>
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 <body>
 <div class="container">
-    <h1>Мой новостной портал</h1>
+    <h1>Стоматологическая клиника</h1>
     <div class="form-group">
         <form method="post" action="index.php?action=add">
-            <label for="inputTitle">Название</label>
-                <input type="text" class="form-control" name="title" id="inputTitle" value="" class="form-item" autofocus required>
+            <label for="inputTitle">Клиент</label>
+            <select class="form-control" id="inputClient" name="client" autofocus required>
+                <?php foreach ($clients as $a): ?>
+                <option><?=$a['full_name']?></option>
+                <?php endforeach; ?>
 
+            </select>
             <br>
             <label for="inputDate">Дата</label>
                 <input type="date" class="form-control" id="inputDate" name="date" value="" class="form-item" required>
-
             <br>
-            <label for="inputContent">Содержимое</label>
-                <textarea name="content" id="inputContent" class="form-control" required></textarea>
-
+            <label for="inputDate">Время начала приема</label>
+            <input type="time" class="form-control" id="inputTime1" name="time1" value="" class="form-item" required>
+            <br>
+            <label for="inputDate">Время конца приема</label>
+            <input type="time" class="form-control" id="inputTime2" name="time2" value="" class="form-item" required>
             <br>
             <input class="btn btn-default" type="submit" value="Сохранить" class="btn">
 
