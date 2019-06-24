@@ -1,4 +1,0 @@
-AuthType Basic
-AuthName "Admin Panel"
-AuthUserFile C:/xampp/htdocs/lab4/admin/.htpasswd
-Require valid-user

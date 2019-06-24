@@ -22,14 +22,5 @@ if ($action == "add") {
         adding_record($link, $_POST['client'],$_GET['id'], $_POST['date'], $_POST['time1'], $_POST['time2']);
         header("Location:doctor.php?id=$doctor_id");
     }
-    //include("../views/adding_record.php");
-}
-if ($action == "delete") {
-    echo "<script>alert('все ок ');</script>";
-    if (!empty($_POST)) {
-        delete_record($link,$_GET['record_id']);
-        header("Location:doctor.php?id=$doctor_id");
-    }
-    //include("../views/adding_record.php");
 }
 ?>

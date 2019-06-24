@@ -9,7 +9,7 @@
 </head>
 <body>
 <div class="container">
-    <h1>Стоматологическая клиника</h1>
+    <h1>Добавление записи</h1>
     <div class="form-group">
         <form method="post" action="adding_record.php?id=<?=$_GET['id']?>&action=add">
             <label for="inputTitle">Клиент</label>

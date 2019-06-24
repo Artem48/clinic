@@ -12,7 +12,6 @@ else
 
 if ($action == "delete") {
     delete_record($link,$_GET['record_id']);
-    //echo "<script>alert('все ок ');</script>";
     header("Location:doctor.php?id=$doctor_id");
 }
 ?>

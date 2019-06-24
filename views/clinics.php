@@ -16,10 +16,9 @@
         <?php foreach ($clinics as $a): ?>
 
             <div class="clinic">
-                Клиника <?=$a['id']?>
                 <h3><a href="clinic.php?id=<?=$a['id']?>">
                 <?=$a['name']?></a></h3>
-                        <em>Адрес: <?=$a['address']?></em>
+                        <em>Адрес: <?=$a['address']?></em><br>
                 <img src="<?=$a['img']?>">
 <!--                <p>--><?//=articles_intro($a['content'])?><!--</p>-->
             </div>
