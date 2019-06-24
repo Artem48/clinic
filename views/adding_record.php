@@ -11,11 +11,11 @@
 <div class="container">
     <h1>Стоматологическая клиника</h1>
     <div class="form-group">
-        <form method="post" action="index.php?action=add">
+        <form method="post" action="adding_record.php?id=<?=$_GET['id']?>&action=add">
             <label for="inputTitle">Клиент</label>
             <select class="form-control" id="inputClient" name="client" autofocus required>
                 <?php foreach ($clients as $a): ?>
-                <option><?=$a['full_name']?></option>
+                <option value=<?=$a['id']?>><?=$a['full_name']?></option>
                 <?php endforeach; ?>
 
             </select>

@@ -36,7 +36,7 @@ function get_receipt_time($link, $doctor_id, $day_id){
     return $times;
 }
 function records_get($link, $id){
-    $query = sprintf("SELECT * FROM record LEFT OUTER JOIN clients ON record.client_id=clients.id WHERE doctor_id=%d",(int)$id);
+    $query = sprintf("SELECT record.id, record.client_id, record.doctor_id, record.time1, record.time2, clients.full_name FROM record LEFT OUTER JOIN clients ON record.client_id=clients.id WHERE doctor_id=%d",(int)$id);
     $result = mysqli_query($link, $query);
 
     if(!$result)
@@ -108,67 +108,39 @@ function get_doctor($link, $id){
 
     return $doctor;
 }
-function articles_new($link, $title, $date, $content){
-    $title=trim($title);
-    $content=trim($content);
+function adding_record($link, $client_id, $doctor_id, $date, $time1, $time2){
+    $client_id=trim($client_id);
+    $doctor_id=trim($doctor_id);
+    $date=trim($date);
+    $time1=trim($time1);
+    $time2=trim($time2);
+    $unixDate=strtotime($date);
+    $unixDatetime1=$unixDate+strtotime($time1, 0)+3600;
+    $unixDatetime2=$unixDate+strtotime($time2, 0)+3600;
 
-    if($title=='')
-        return false;
-
-    $t="INSERT INTO articles(title, content, date) VALUES ('%s', '%s','%s')";
+    $t="INSERT INTO record(client_id, doctor_id, time1, time2) VALUES ('%d', '%d','%d','%d')";
 
     $query=sprintf($t,
-        mysqli_real_escape_string($link, $title),
-        mysqli_real_escape_string($link, $content),
-        mysqli_real_escape_string($link, $date) );
-    echo $query;
+        mysqli_real_escape_string($link, $client_id),
+        mysqli_real_escape_string($link, $doctor_id),
+        mysqli_real_escape_string($link, $unixDatetime1),
+        mysqli_real_escape_string($link, $unixDatetime2));
+
     $result=mysqli_query($link, $query);
     if(!$result)
         die(mysqli_error($link));
     return true;
-
 }
-function articles_edit($link, $id, $title, $date, $content){
-    $title=trim($title);
-    $content=trim($content);
-    $date=trim($date);
-    $id=(int)$id;
+function delete_record($link, $record_id){
+    $record_id=(int)$record_id;
 
-    if($title=='')
+    if($record_id==0)
         return false;
-
-    $t="UPDATE articles SET title='%s', content='%s', date='%s' WHERE id='%d'";
-
-    $query=sprintf($t,
-        mysqli_real_escape_string($link, $title),
-        mysqli_real_escape_string($link, $content),
-        mysqli_real_escape_string($link, $date), $id );
-    echo $query;
-    $result=mysqli_query($link, $query);
-    if(!$result)
-        die(mysqli_error($link));
-    return mysqli_affected_rows($link);
-}
-function articles_delete($link, $id){
-    $id=(int)$id;
-
-    if($id==0)
-        return false;
-    $query=sprintf("DELETE FROM articles WHERE id='%d'", $id);
+    $query=sprintf("DELETE FROM record WHERE id='%d'", $record_id);
     $result=mysqli_query($link,$query);
-
     if(!$result)
         die(mysqli_error($link));
 
     return mysqli_affected_rows($link);
-}
-function articles_intro($text, $len=500){
-    $intro=mb_substr($text, 0, $len);
-    if($text!=$intro) $intro=$intro."...";
-    return $intro;
-}
-function adding_record($link, $client, $date, $time1, $time2){
-    include("views/doctors.php");include("views/doctors.php");include("views/doctors.php");
-
 }
 ?>

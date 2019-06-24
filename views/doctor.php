@@ -18,12 +18,15 @@
                 <th>Клиент</th>
                 <th>Дата</th>
                 <th>Время</th>
+                <th></th>
             </tr>
             <?php foreach ($records as $a):?>
             <tr>
                 <td><?=$a['full_name']?></td>
                 <td><?=date("d-m-Y", $a['time1'])?></td>
                 <td><?=date("H:i:s",$a['time1'])?>-<?=date("H:i:s",$a['time2'])?></td>
+                <td><form method="post" action="delete_record.php?id=<?=$_GET['id']?>&record_id=<?=$a['id']?>&action=delete">
+                        <button class="btn btn-link" type="submit">Удалить</button></form></td>
             </tr>
             <?php endforeach; ?>
         <div class="doctor">
